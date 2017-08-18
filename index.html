@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="description" content="Pure JavaScript Browser Game. Made with Scene.Js">
+    <meta name="author" content="Yunus Bayraktaroğlu">
+    <title>Pure JavaScript Browser Game</title>
+    <link rel="stylesheet" href="css/reset.css" media="screen" type="text/css"/>
+    <link rel="stylesheet" href="css/game.css" media="screen" type="text/css"/>
+</head>
+<body>
+
+    <div id="preloader">
+        <span class="inf">Background loading</span><span class="per"></span>
+    </div>
+
+    <div id="debug">
+        <button id="hideBtn">Debug</button>
+        <div id="data">
+            <p>Status : <span class="status"></span></p>
+            <p>Visible Frame : <span class="visibleframe"></span></p>
+            <p>Target Frame : <span class="targetframe"></span></p>
+            <br>
+            <button id="winBtn">Win</button>
+            <br>
+            <div class="winningnumbers">
+                <p>Winning Numbers</p>
+                <p>
+                    <span id="lowerLimit"></span> - <span id="upperLimit"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="stage">
+
+        <div data-scene="opacity,2,rtl" class="light-R noselect" style="z-index: 25;"></div>
+        <div data-scene="opacity,-2,ltr" class="light-L noselect" style="z-index: 15;"></div>
+
+        <div data-scene="translateBoth,-6,-1" class="layer noselect" style="z-index: 5;">
+            <img src="img/layer_1.png">
+        </div>
+
+        <div data-scene="translateBoth,-3.5,-1.2" class="layer noselect" style="z-index: 10;">
+            <img src="img/layer_2.png">
+        </div>
+
+        <div data-scene="translateBoth,-2,-1" class="layer" id="game_layer" style="z-index: 20;">
+
+            <img src="img/layer_3-1.png" id="floor" class="noselect">
+            <img src="img/layer_3-2.png">
+
+            <section id="game_area">
+                <div class="padding"></div>
+                <div class="card-images opacity-0">
+                    <div data-scene="translateFree,-0.3,-0.2" class="instructions noselect" style="z-index: 10;">
+                        <img src="img/ready.png" id="ready-img">
+                        <img src="img/flip.png" id="flip-img">
+                        <p id="lap_counter"></p>
+                    </div>
+                    <img src="" id="sequence_images" style="z-index: 20;">
+                    <img src="img/sequence_WON.png" id="won_image" class="hide">
+                </div>
+                <div class="padding"></div>
+            </section>
+
+        </div>
+
+        <div data-scene="translateBoth,-1,-1" class="layer noselect" style="z-index: 30;">
+            <img src="img/layer_4.png">
+        </div>
+
+    </div>
+
+    <script src="js/parallax-scene.js"></script>
+    <script src="js/game.js"></script>
+    <script type="text/javascript">
+
+        // App Kicker
+        window.onload = function(){
+
+            var sceneJs = function(scene) {
+                this.model = new SceneModel();
+                this.view = new SceneView(this.model, scene);
+                this.controller = new SceneController(this.model, this.view);
+            };
+
+            var background = new sceneJs("#stage");
+            var game = new cardGame(background);
+        };
+
+    </script>
+
+</body>
+</html>

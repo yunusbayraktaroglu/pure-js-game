@@ -1,0 +1,276 @@
+html, body {
+    height: 100%;
+}
+body {
+	background: #000;
+    color: #FFF;
+    font-family: "Trebuchet MS", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+	font-smooth: always;
+	font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Preloader */
+#preloader {
+	color:#FFF;
+	font-size:10px;
+	font-weight:bold;
+	line-height:0.6em;
+	left:50%;
+	position:absolute;
+	top:50%;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+}
+
+/* Debugging Part */
+#debug {
+	bottom:0;
+	font-size: 13px;
+	margin: 0 10px;
+	position: absolute;
+	z-index: 50;
+}
+#debug span {
+	font-weight:bold;
+}
+#debug button {
+	background-color: #00CA7A;
+	border: none;
+	color: white;
+	display: inline-block;
+	font-size:11px;
+	outline: none;
+	padding: 10px 10px;
+}
+#debug div {
+	background: rgba(0,0,0,0.3);
+	padding: 10px;
+}
+#debug div button {
+	background: #099d61;
+	margin:2px 0;
+	width: 100%;
+}
+#debug .winningnumbers {
+	font-size: 11px;
+	text-align: center;
+}
+#debug .winningnumbers p {
+	margin:5px 0;
+}
+
+
+/* Interactive
+ * Part
+ */
+#stage {
+	display: block;
+	float: left;
+	height: 100vh;
+	min-height: 100%;
+	width: 100%;
+	min-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	touch-action: none !important;
+	overflow: hidden !important;
+}
+#stage .layer {
+	height: 120%;
+	position: absolute;
+	width: auto;
+}
+#stage .layer > img {
+	height: 100%;
+	width: auto;
+}
+
+/* Lights */
+#stage .light-L,
+#stage .light-R {
+	bottom: 0;
+	right: 0;
+	top: 0;
+	left:0;
+	position: absolute;
+}
+#stage .light-L {
+	background: url(../img/lightL.png) top left / 100% 100% no-repeat;
+	opacity: 0;
+}
+#stage .light-R {
+	background: url(../img/lightR.png) top right / 100% 100% no-repeat;
+	opacity: 0;
+}
+
+/* Floor */
+#game_layer #floor {
+	bottom: 0;
+	height: auto !important;
+	left: 0;
+	right: 0;
+	position: absolute;
+	width: 100% !important;
+}
+
+/* Instructions */
+#game_layer .instructions {
+	opacity: 1;
+	position: absolute;
+	right: -100px;
+	top: -60px;
+	z-index: 12;
+}
+#game_layer .instructions img {
+	opacity: 0;
+	-webkit-transition: opacity .5s;
+	-moz-transition: opacity .5s;
+	-ms-transition: opacity .5s;
+	-o-transition: opacity .5s;
+	transition: opacity .5s;
+}
+#game_layer .instructions > * {
+	position: absolute;
+}
+#game_layer .instructions #ready-img {
+	position: relative;
+}
+#game_layer .instructions #flip-img {
+	left: 0;
+	top: 0;
+}
+#game_layer .instructions #lap_counter {
+	color: #FFF;
+	font-size: calc(2rem + 4vw);
+	font-weight: bold;
+	letter-spacing:-5px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	z-index: 9;
+}
+
+/* Card Part */
+#game_layer #game_area {
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+    z-index: 500;
+}
+#game_layer #game_area .padding {
+	float: left;
+	min-height: 100%;
+	position: relative;
+	width: 30%;
+}
+#game_layer #game_area .card-images {
+	cursor: grab;
+	cursor: -moz-grab;
+	cursor: -webkit-grab;
+	float: left;
+	height: auto;
+	position: relative;
+	width: 40%;
+}
+#game_layer #game_area .card-images:active,
+#game_layer #game_area .card-images:focus {
+	cursor: -moz-grabbing;
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}
+#game_layer #game_area .card-images #sequence_images,
+#game_layer #game_area .card-images #won_image {
+	height: auto;
+	position: relative;
+	width: 100%;
+	z-index: 100;
+}
+#game_layer #game_area .card-images #won_image {
+	position:absolute;
+	top:0;
+	z-index: 200;
+}
+#game_layer #game_area .gift {
+	float: left;
+	height: 100%;
+	opacity:0;
+	position:absolute;
+	-webkit-transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	-ms-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+	width: auto;
+	z-index: 999;
+}
+
+/* Some Attributes */
+.show {
+	display: block !important;
+	opacity: 1 !important;
+}
+.hide {
+	display: none;
+	opacity: 0 !important;
+}
+.opacity-0 {
+	opacity: 0 !important;
+}
+.youwin,
+.youlose {
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.youwin {
+	color : #00ca7a !important;
+}
+.youlose {
+	color : #ca0000 !important;
+}
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	touch-action: none;
+	pointer-events: none;
+}
+
+
+
+/* Responsive */
+@media screen and (max-width : 1200px) and (orientation : landscape) {
+	#game_layer #game_area .padding {
+		width: 25%;
+	}
+	#game_layer #game_area .card-images {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	#game_layer #game_area .padding {
+		width: 15.5%;
+	}
+	#game_layer #game_area .card-images {
+		width: 75%;
+	}
+}
+
+@media screen and (orientation:portrait) {
+	#game_layer #game_area .padding {
+		width: 5%;
+	}
+	#game_layer #game_area .card-images {
+		width: 90%;
+	}
+}
